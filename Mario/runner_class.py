@@ -2,98 +2,100 @@ import pygame
 from sys import exit
 from random import randint, choice
 
-class Player(pygame.sprite.Sprite):
-	def __init__(self):
-		super().__init__()
-		player_walk_1 = pygame.image.load('C:/Users/ioa/CODe/DTS/PROJECT/Mario/graphics/player/player_walk_1.png').convert_alpha()
-		player_walk_2 = pygame.image.load('C:/Users/ioa/CODe/DTS/PROJECT/Mario/graphics/player/player_walk_2.png').convert_alpha()
-		self.player_walk = [player_walk_1,player_walk_2]
-		self.player_index = 0
-		self.player_jump = pygame.image.load('C:/Users/ioa/CODe/DTS/PROJECT/Mario/graphics/player/jump.png').convert_alpha()
+def main():
+	class Player(pygame.sprite.Sprite):
+		def __init__(self):
+			super().__init__()
+			player_walk_1 = pygame.image.load('C:/Users/ioa/CODe/DTS/PROJECT/Mario/graphics/player/player_walk_1.png').convert_alpha()
+			player_walk_2 = pygame.image.load('C:/Users/ioa/CODe/DTS/PROJECT/Mario/graphics/player/player_walk_2.png').convert_alpha()
+			self.player_walk = [player_walk_1,player_walk_2]
+			self.player_index = 0
+			self.player_jump = pygame.image.load('C:/Users/ioa/CODe/DTS/PROJECT/Mario/graphics/player/jump.png').convert_alpha()
 
-		self.image = self.player_walk[self.player_index]
-		self.rect = self.image.get_rect(midbottom = (80,300))
-		self.gravity = 0
+			self.image = self.player_walk[self.player_index]
+			self.rect = self.image.get_rect(midbottom = (80,300))
+			self.gravity = 0
 
-		self.jump_sound = pygame.mixer.Sound('C:/Users/ioa/CODe/DTS/PROJECT/Mario/audio/jump.mp3')
-		self.jump_sound.set_volume(0.01)
+			self.jump_sound = pygame.mixer.Sound('C:/Users/ioa/CODe/DTS/PROJECT/Mario/audio/jump.mp3')
+			self.jump_sound.set_volume(0.01)
 
-	def player_input(self):
-		keys = pygame.key.get_pressed()
-		if keys[pygame.K_SPACE] and self.rect.bottom >= 300:
-			self.gravity = -20
-			self.jump_sound.play()
+		def player_input(self):
+			keys = pygame.key.get_pressed()
+			if keys[pygame.K_SPACE] and self.rect.bottom >= 300:
+				self.gravity = -20
+				self.jump_sound.play()
 
-	def apply_gravity(self):
-		self.gravity += 1
-		self.rect.y += self.gravity
-		if self.rect.bottom >= 300:
-			self.rect.bottom = 300
+		def apply_gravity(self):
+			self.gravity += 1
+			self.rect.y += self.gravity
+			if self.rect.bottom >= 300:
+				self.rect.bottom = 300
 
-	def animation_state(self):
-		if self.rect.bottom < 300: 
-			self.image = self.player_jump
-		else:
-			self.player_index += 0.1
-			if self.player_index >= len(self.player_walk):self.player_index = 0
-			self.image = self.player_walk[int(self.player_index)]
+		def animation_state(self):
+			if self.rect.bottom < 300: 
+				self.image = self.player_jump
+			else:
+				self.player_index += 0.1
+				if self.player_index >= len(self.player_walk):self.player_index = 0
+				self.image = self.player_walk[int(self.player_index)]
 
-	def update(self):
-		self.player_input()
-		self.apply_gravity()
-		self.animation_state()
+		def update(self):
+			self.player_input()
+			self.apply_gravity()
+			self.animation_state()
 
-class Obstacle(pygame.sprite.Sprite):
-	def __init__(self,type):
-		super().__init__()
-		
-		if type == 'fly':
-			fly_1 = pygame.image.load('C:/Users/ioa/CODe/DTS/PROJECT/Mario/graphics/fly/fly1.png').convert_alpha()
-			fly_2 = pygame.image.load('C:/Users/ioa/CODe/DTS/PROJECT/Mario/graphics/fly/fly2.png').convert_alpha()
-			self.frames = [fly_1,fly_2]
-			y_pos = 210
-		else:
-			snail_1 = pygame.image.load('C:/Users/ioa/CODe/DTS/PROJECT/Mario/graphics/snail/snail1.png').convert_alpha()
-			snail_2 = pygame.image.load('C:/Users/ioa/CODe/DTS/PROJECT/Mario/graphics/snail/snail2.png').convert_alpha()
-			self.frames = [snail_1,snail_2]
-			y_pos  = 300
+	class Obstacle(pygame.sprite.Sprite):
+		def __init__(self,type):
+			super().__init__()
+			
+			if type == 'fly':
+				fly_1 = pygame.image.load('C:/Users/ioa/CODe/DTS/PROJECT/Mario/graphics/fly/fly1.png').convert_alpha()
+				fly_2 = pygame.image.load('C:/Users/ioa/CODe/DTS/PROJECT/Mario/graphics/fly/fly2.png').convert_alpha()
+				self.frames = [fly_1,fly_2]
+				y_pos = 210
+			else:
+				snail_1 = pygame.image.load('C:/Users/ioa/CODe/DTS/PROJECT/Mario/graphics/snail/snail1.png').convert_alpha()
+				snail_2 = pygame.image.load('C:/Users/ioa/CODe/DTS/PROJECT/Mario/graphics/snail/snail2.png').convert_alpha()
+				self.frames = [snail_1,snail_2]
+				y_pos  = 300
 
-		self.animation_index = 0
-		self.image = self.frames[self.animation_index]
-		self.rect = self.image.get_rect(midbottom = (randint(900,1100),y_pos))
+			self.animation_index = 0
+			self.image = self.frames[self.animation_index]
+			self.rect = self.image.get_rect(midbottom = (randint(900,1100),y_pos))
 
-	def animation_state(self):
-		self.animation_index += 0.1 
-		if self.animation_index >= len(self.frames): self.animation_index = 0
-		self.image = self.frames[int(self.animation_index)]
+		def animation_state(self):
+			self.animation_index += 0.1 
+			if self.animation_index >= len(self.frames): self.animation_index = 0
+			self.image = self.frames[int(self.animation_index)]
 
-	def update(self):
-		self.animation_state()
-		self.rect.x -= 6
-		self.destroy()
+		def update(self):
+			self.animation_state()
+			self.rect.x -= 6
+			self.destroy()
 
-	def destroy(self):
-		if self.rect.x <= -100: 
-			self.kill()
+		def destroy(self):
+			if self.rect.x <= -100: 
+				self.kill()
 
-def display_score():
-	current_time = int(pygame.time.get_ticks() / 1000) - start_time
-	score_surf = test_font.render(f'Score: {current_time}',False,(64,64,64))
-	score_rect = score_surf.get_rect(center = (400,50))
-	screen.blit(score_surf,score_rect)
-	return current_time
+	def display_score():
+		current_time = int(pygame.time.get_ticks() / 1000) - start_time
+		score_surf = test_font.render(f'Score: {current_time}',False,(64,64,64))
+		score_rect = score_surf.get_rect(center = (400,50))
+		screen.blit(score_surf,score_rect)
+		return current_time
 
-def collision_sprite():
-	if pygame.sprite.spritecollide(player.sprite,obstacle_group,False):
-		obstacle_group.empty()
-		return False
-	else: return True
- 
-# def highscoree(score):
-#     global highscore
-#     highscore.append(score)
+	def collision_sprite():
+		if pygame.sprite.spritecollide(player.sprite,obstacle_group,False):
+			obstacle_group.empty()
+			return False
+		else: return True
+	
+	# def highscoree(score):
+	#     global highscore
+	#     highscore.append(score)
 
-if __name__ == "__main__":
+
+    
 	pygame.init()
 	screen = pygame.display.set_mode((800,400))
 	pygame.display.set_caption('Runner')
@@ -169,13 +171,15 @@ if __name__ == "__main__":
    			# HIGHREACT = HIGHH.get_rect(center = (200,150))
 
 			if score != 0: 
-							highscore.append(score)
+							# highscore.append(score)
 							screen.blit(score_message,score_message_rect) 
 							# screen.blit(HIGHH,HIGHREACT) 	
-							print("highscore : ", highscore) #HIGHSCORE
+							# print("highscore : ", highscore) #HIGHSCORE
 			else: 
 					
        				screen.blit(game_message,game_message_rect)
 
 		pygame.display.update()
 		clock.tick(60)
+if __name__ == "__main__":
+    main()

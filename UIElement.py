@@ -11,7 +11,12 @@ from enum import Enum
 
 BLUE = (106, 159, 181)
 WHITE = (255, 255, 255)
-playerS = pygame.image.load("C:/Users/ioa/CODe/DTS/PROJECT/Hamster/resources/images/dude.png")
+icon_hamster = pygame.image.load("C:/Users/ioa/CODe/DTS/WIT-J-5/Hamster/resources/images/dude.png")
+icon_snake = pygame.image.load("C:/Users/ioa/CODe/DTS/WIT-J-5/Snake/snake.png")
+icon_snake = pygame.transform.scale(icon_snake, (100, 50)) 
+icon_snakeladders = pygame.image.load("C:/Users/ioa/CODe/DTS/WIT-J-5/SnakeAndLadders/icon.jpg")
+icon_snakeladders = pygame.transform.scale(icon_snakeladders, (100, 100)) 
+# icon_snake =  pygame.display.flip()
 
 
 def create_surface_with_text(text, font_size, text_rgb, bg_rgb):
@@ -109,16 +114,16 @@ def main():
         
 def title_screen(screen):
     start_btn = UIElement(
-        center_position=(400, 400),
-        font_size=30,
+        center_position=(400, 250),
+        font_size=60,
         bg_rgb=BLUE,
         text_rgb=WHITE,
         text="Start",
         action=GameState.NEWGAME,
     )
     quit_btn = UIElement(
-        center_position=(400, 500),
-        font_size=30,
+        center_position=(400, 475),
+        font_size=60,
         bg_rgb=BLUE,
         text_rgb=WHITE,
         text="Quit",
@@ -145,7 +150,7 @@ def title_screen(screen):
 
 def play_level(screen):
     return_btn_hamster = UIElement(
-        center_position=(150, 250),
+        center_position=(250, 200),
         font_size=40,
         bg_rgb=BLUE,
         text_rgb=WHITE,
@@ -154,12 +159,21 @@ def play_level(screen):
     )
     
     return_btn_snake = UIElement(
-        center_position=(370, 250),
+        center_position=(570, 200),
         font_size=40,
         bg_rgb=BLUE,
         text_rgb=WHITE,
         text="SNAKE",
         action=GameState.SNAKE,
+    )
+    
+    return_btn_snakeladders = UIElement(
+        center_position=(400, 450),
+        font_size=40,
+        bg_rgb=BLUE,
+        text_rgb=WHITE,
+        text="SNAKE & Ladders",
+        action=GameState.SNAKEANDLADDERS,
     )
     
     return_btn = UIElement(
@@ -170,7 +184,7 @@ def play_level(screen):
         text="Return to main menu",
         action=GameState.TITLE,
     )
-    buttons = [return_btn_hamster, return_btn_snake, return_btn]
+    buttons = [return_btn_snakeladders, return_btn_hamster, return_btn_snake, return_btn]
 
     while True:
         mouse_up = False
@@ -188,7 +202,9 @@ def play_level(screen):
         # if ui_action is not None:
         #     return ui_action
         # return_btn.draw(screen)
-        screen.blit(playerS, (110, 175))
+        screen.blit(icon_hamster, (210, 125))
+        screen.blit(icon_snake, (520, 125))
+        screen.blit(icon_snakeladders, (350, 310))
         pygame.display.flip()
 
 
@@ -198,6 +214,7 @@ class GameState(Enum):
     NEWGAME = 1
     HAMSTER = 1
     SNAKE   = 1
+    SNAKEANDLADDERS = 1
 
 
 if __name__ == "__main__":

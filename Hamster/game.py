@@ -37,27 +37,27 @@ def main():
 
     # 3 - Load Game Assets ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # 3.1 - Load Images
-    player = pygame.image.load("C:/Users/ioa/CODe/DTS/PROJECT/Hamster/resources/images/dude.png")
-    grass = pygame.image.load("C:/Users/ioa/CODe/DTS/PROJECT/Hamster/resources/images/grass.png")
-    castle = pygame.image.load("C:/Users/ioa/CODe/DTS/PROJECT/Hamster/resources/images/castle.png")
-    arrow = pygame.image.load("C:/Users/ioa/CODe/DTS/PROJECT/Hamster/resources/images/bullet.png")
-    enemy_img = pygame.image.load("C:/Users/ioa/CODe/DTS/PROJECT/Hamster/resources/images/badguy.png")
-    healthbar = pygame.image.load("C:/Users/ioa/CODe/DTS/PROJECT/Hamster/resources/images/healthbar.png")
-    health = pygame.image.load("C:/Users/ioa/CODe/DTS/PROJECT/Hamster/resources/images/health.png")
-    gameover = pygame.image.load("C:/Users/ioa/CODe/DTS/PROJECT/Hamster/resources/images/gameover.png")
-    youwin = pygame.image.load("C:/Users/ioa/CODe/DTS/PROJECT/Hamster/resources/images/youwin.png")
+    player = pygame.image.load("C:/Users/ioa/CODe/DTS/WIT-J-5/Hamster/resources/images/dude.png")
+    grass = pygame.image.load("C:/Users/ioa/CODe/DTS/WIT-J-5/Hamster/resources/images/grass.png")
+    castle = pygame.image.load("C:/Users/ioa/CODe/DTS/WIT-J-5/Hamster/resources/images/castle.png")
+    arrow = pygame.image.load("C:/Users/ioa/CODe/DTS/WIT-J-5/Hamster/resources/images/bullet.png")
+    enemy_img = pygame.image.load("C:/Users/ioa/CODe/DTS/WIT-J-5/Hamster/resources/images/badguy.png")
+    healthbar = pygame.image.load("C:/Users/ioa/CODe/DTS/WIT-J-5/Hamster/resources/images/healthbar.png")
+    health = pygame.image.load("C:/Users/ioa/CODe/DTS/WIT-J-5/Hamster/resources/images/health.png")
+    gameover = pygame.image.load("C:/Users/ioa/CODe/DTS/WIT-J-5/Hamster/resources/images/gameover.png")
+    youwin = pygame.image.load("C:/Users/ioa/CODe/DTS/WIT-J-5/Hamster/resources/images/youwin.png")
 
     # 3.1 - Load audio
     pygame.mixer.init()
-    hit_sound = pygame.mixer.Sound("C:/Users/ioa/CODe/DTS/PROJECT/Hamster/resources/audio/explode.wav")
-    enemy_hit_sound = pygame.mixer.Sound("C:/Users/ioa/CODe/DTS/PROJECT/Hamster/resources/audio/enemy.wav")
-    shoot_sound = pygame.mixer.Sound("C:/Users/ioa/CODe/DTS/PROJECT/Hamster/resources/audio/shoot.wav")
+    hit_sound = pygame.mixer.Sound("C:/Users/ioa/CODe/DTS/WIT-J-5/Hamster/resources/audio/explode.wav")
+    enemy_hit_sound = pygame.mixer.Sound("C:/Users/ioa/CODe/DTS/WIT-J-5/Hamster/resources/audio/enemy.wav")
+    shoot_sound = pygame.mixer.Sound("C:/Users/ioa/CODe/DTS/WIT-J-5/Hamster/resources/audio/shoot.wav")
     hit_sound.set_volume(0.05)
     enemy_hit_sound.set_volume(0.05)
     shoot_sound.set_volume(0.05)
 
     # background music
-    pygame.mixer.music.load("C:/Users/ioa/CODe/DTS/PROJECT/Hamster/resources/audio/moonlight.wav")
+    pygame.mixer.music.load("C:/Users/ioa/CODe/DTS/WIT-J-5/Hamster/resources/audio/moonlight.wav")
     pygame.mixer.music.play(-1, 0.0)
     pygame.mixer.music.set_volume(0.25)
 
