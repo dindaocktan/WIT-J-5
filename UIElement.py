@@ -1,7 +1,7 @@
 
 import Mario.runner_class as mario
 import Hamster.game as hamster
-import Snake.snake as snake
+import Snake.snake11 as snake
 
 import pygame.freetype
 import pygame
@@ -150,7 +150,7 @@ def title_screen(screen):
 
 def play_level(screen):
     return_btn_hamster = UIElement(
-        center_position=(250, 200),
+        center_position=(250, 350),
         font_size=40,
         bg_rgb=BLUE,
         text_rgb=WHITE,
@@ -159,7 +159,7 @@ def play_level(screen):
     )
     
     return_btn_snake = UIElement(
-        center_position=(570, 200),
+        center_position=(570, 350),
         font_size=40,
         bg_rgb=BLUE,
         text_rgb=WHITE,
@@ -167,14 +167,14 @@ def play_level(screen):
         action=GameState.SNAKE,
     )
     
-    return_btn_snakeladders = UIElement(
-        center_position=(400, 450),
-        font_size=40,
-        bg_rgb=BLUE,
-        text_rgb=WHITE,
-        text="SNAKE & Ladders",
-        action=GameState.SNAKEANDLADDERS,
-    )
+    # return_btn_snakeladders = UIElement(
+    #     center_position=(400, 450),
+    #     font_size=40,
+    #     bg_rgb=BLUE,
+    #     text_rgb=WHITE,
+    #     text="SNAKE & Ladders",
+    #     action=GameState.SNAKEANDLADDERS,
+    # )
     
     return_btn = UIElement(
         center_position=(140, 570),
@@ -184,7 +184,8 @@ def play_level(screen):
         text="Return to main menu",
         action=GameState.TITLE,
     )
-    buttons = [return_btn_snakeladders, return_btn_hamster, return_btn_snake, return_btn]
+    # buttons = [return_btn_snakeladders, return_btn_hamster, return_btn_snake, return_btn]
+    buttons = [ return_btn_hamster, return_btn_snake, return_btn]
 
     while True:
         mouse_up = False
@@ -202,9 +203,9 @@ def play_level(screen):
         # if ui_action is not None:
         #     return ui_action
         # return_btn.draw(screen)
-        screen.blit(icon_hamster, (210, 125))
-        screen.blit(icon_snake, (520, 125))
-        screen.blit(icon_snakeladders, (350, 310))
+        screen.blit(icon_hamster, (210, 255))
+        screen.blit(icon_snake, (520, 255))
+        # screen.blit(icon_snakeladders, (350, 310))
         pygame.display.flip()
 
 
@@ -214,7 +215,17 @@ class GameState(Enum):
     NEWGAME = 1
     HAMSTER = 1
     SNAKE   = 1
-    SNAKEANDLADDERS = 1
+    # SNAKEANDLADDERS = 1
+
+
+
+
+
+
+#=====================================================
+
+
+
 
 
 if __name__ == "__main__":
